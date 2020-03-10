@@ -6,3 +6,5 @@ It has 3 microservices
 3. Student microservices to add, delete and view student details
 
 The data between books and student microservice is set in sync with kafka
+
+There is a API Gateway which routes to the inner microservices, security is also set up in it.
