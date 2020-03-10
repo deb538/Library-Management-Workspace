@@ -1,0 +1,30 @@
+package com.libarayManagement.Librarian.Repository;
+
+import java.util.ArrayList;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.libarayManagement.Librarian.Model.IModel.ILibrarian;
+import com.libarayManagement.Librarian.Repository.IRepository.IDAOImpl;
+import com.libarayManagement.Librarian.Repository.IRepository.IProductRepository;
+
+@Repository
+public class DAOImpl implements IDAOImpl {
+	
+	@Autowired
+	private IProductRepository dataRepository;
+	
+	public ArrayList<ILibrarian> getAllLibrarians() {
+		return dataRepository.findAll();
+	}
+	
+	public ILibrarian getAllLibrarians() {
+		
+	}
+	
+	public void deleteLibrarian() {
+		
+	}
+
+}

@@ -1,0 +1,46 @@
+package com.libraryManagement.BookS.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.libarayManagement.Book.Exception.CustomRunTimeException;
+import com.libarayManagement.Book.Repository.DAOImpl;
+import com.libraryManagement.BookS.Model.Book;
+import com.libraryManagement.BookS.Model.IModel.IBook;
+import com.libraryManagement.bookS.Service.IService.IBookService;
+
+@Service
+public class BookService implements IBookService{
+	
+	@Autowired
+	DAOImpl daoImpl;
+
+	public List<Book> getAllBooks() {
+		return daoImpl.getAllBooks();
+	}
+	
+	public Book getBook(Integer id) {
+		
+		Book Book = daoImpl.getBook(Long.valueOf(id.toString()));
+		
+		if(Book == null) {
+			throw new CustomRunTimeException("No Resource found");
+		}
+		return Book;
+	}
+	
+	public List<Book> getBookByEmployeeNumber(IBook Book) {
+		return daoImpl.getBookByEmployeeNumber(Book);
+	}
+	
+	
+	public void deleteBook(Integer id) {
+		daoImpl.deleteBook(Long.valueOf(id.toString()));
+	}
+	
+	public Book addBook(Book Book) {
+		return daoImpl.addBook(Book);
+	}
+}

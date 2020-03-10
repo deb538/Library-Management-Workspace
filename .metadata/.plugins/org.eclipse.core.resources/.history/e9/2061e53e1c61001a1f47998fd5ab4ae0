@@ -1,0 +1,5 @@
+package com.libarayManagement.Librarian.Model.IModel;
+
+public interface ILibrarian {
+
+}

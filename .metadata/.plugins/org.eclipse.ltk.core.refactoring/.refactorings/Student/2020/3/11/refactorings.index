@@ -1,0 +1,14 @@
+1583693985494	Rename package 'com.libraryManagement.BookS.Controller'
+1583693997092	Rename package 'com.libraryManagement.BookS.Exception'
+1583694011132	Rename package 'com.libraryManagement.BookS.Model'
+1583694023657	Rename package 'com.libraryManagement.BookS.Repository'
+1583694035255	Rename package 'com.libraryManagement.BookS.Service'
+1583694076899	Rename package 'com.libraryManagement.BookS.Repository.IRepository'
+1583694102399	Rename type 'BooksController'
+1583694230771	Rename compilation unit 'Book.java'
+1583694490565	Rename type 'IBookService'
+1583694501730	Rename type 'BookService'
+1583740049768	Copy compilation unit
+1583762333213	Delete element
+1583772322015	Move compilation unit
+1583788870811	Delete element

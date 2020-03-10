@@ -1,0 +1,5 @@
+package com.libraryManagement.Student.Service;
+
+public interface IBookService {
+
+}

@@ -1,0 +1,8 @@
+package com.libarayManagement.Librarian.Model.IModel;
+
+public interface ILibrarian {
+	private String firstName;
+	private String fastName;
+	private Integer employeeNumber;
+	private Long id;
+}

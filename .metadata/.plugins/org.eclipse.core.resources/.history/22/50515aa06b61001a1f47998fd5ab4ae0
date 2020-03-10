@@ -1,0 +1,80 @@
+package com.libraryManagement.BookS.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import com.libraryManagement.BookS.Exception.CustomRunTimeException;
+import com.libraryManagement.BookS.Exception.NoContentException;
+import com.libraryManagement.Librarian.Model.ControllerInputOutput;
+import com.libraryManagement.Librarian.Model.Librarian;
+import com.libraryManagement.Librarian.Model.IModel.ILibrarian;
+import com.libraryManagement.Librarian.Service.LibrarianService;
+
+public class BooksController {
+	
+	@Autowired
+	LibrarianService librarinService;	
+	
+	@GetMapping("/librarian")
+	public ResponseEntity<ControllerInputOutput> getAllLibrarians() {
+		
+		List<Librarian> allLibrarians = librarinService.getAllLibrarians();
+		
+		if(allLibrarians == null || allLibrarians.isEmpty()) {
+			throw new CustomRunTimeException("No Resource found");
+		}
+		
+		ControllerInputOutput output = new ControllerInputOutput.ControllerBuilder()
+				.librarianList(allLibrarians)
+				.build();
+		
+		return new ResponseEntity<ControllerInputOutput>(output, HttpStatus.OK);
+	}
+	
+	@GetMapping("/librarian/{id}")
+	public ResponseEntity<ILibrarian> getLibrarian(@PathVariable Integer id) {
+		
+		if(id == null) {
+			throw new NoContentException("Invalid Input");
+		}
+		
+		Librarian librarian = librarinService.getLibrarian(id);
+
+		return new ResponseEntity<>(librarian, HttpStatus.OK);
+	}
+	
+	@PostMapping("/librarian")
+	public ResponseEntity<String> addLibrarian(@RequestBody Librarian librarian) {
+		
+		/*List<Librarian> allLibrarians = librarinService.getLibrarianByEmployeeNumber(librarian);
+		
+		if(allLibrarians != null && !allLibrarians.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.CONFLICT);
+		}*/
+		
+		librarian = librarinService.addLibrarian(librarian);
+		
+		if(librarian.getId() != null) {
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@DeleteMapping("/librarian/{id}")
+	public ResponseEntity<String> addLibrarian(@PathVariable Integer id) {
+		
+		librarinService.deleteLibrarian(id);
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+
+}

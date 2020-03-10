@@ -1,0 +1,9 @@
+package com.libarayManagement.Librarian.Repository.IRepository;
+
+import org.springframework.data.repository.CrudRepository;
+
+import com.libarayManagement.Librarian.Model.Librarian;
+
+public interface IDAOImpl extends CrudRepository<Librarian, Long> {
+
+}

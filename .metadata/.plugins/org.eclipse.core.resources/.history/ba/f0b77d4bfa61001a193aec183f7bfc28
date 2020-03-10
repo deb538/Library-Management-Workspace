@@ -1,0 +1,26 @@
+package com.libraryManagement.Student.Kafka;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
+import com.libraryManagement.Student.Repository.IRepository.IProductRepository;
+
+@Component
+public class BookUpdateKafkaListener {
+	
+	private IProductRepository dataRepository;
+
+	@Autowired
+	public BookUpdateKafkaListener(IProductRepository dataRepository) {
+		super();
+		this.dataRepository = dataRepository;
+	}
+	
+	@KafkaListener(topics = "updateStudentBookDetails")
+	public void order(Invoice invoice, Acknowledgment acknowledgment) {
+		log.info("Received invoice " + invoice.getId());
+		invoiceService.generateInvoice(invoice);
+		acknowledgment.acknowledge();
+	}
+
+}

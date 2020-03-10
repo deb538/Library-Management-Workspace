@@ -1,0 +1,10 @@
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  ignoredServices: '*'
+  routes:
+    BookService:
+      path: /BookService/**
+      serviceId: books-service
+    StudentService:
+       path: /StudentService/**
+      serviceId: student-service

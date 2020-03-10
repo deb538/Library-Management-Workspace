@@ -1,0 +1,5 @@
+package com.libraryManagement.APIGateway.Security;
+
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+}

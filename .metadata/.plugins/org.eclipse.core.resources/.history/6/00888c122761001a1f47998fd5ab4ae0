@@ -1,0 +1,7 @@
+package com.libarayManagement.Librarian.Repository.IRepository;
+
+import org.springframework.data.repository.CrudRepository;
+
+public interface IDAOImpl extends CrudRepository {
+
+}

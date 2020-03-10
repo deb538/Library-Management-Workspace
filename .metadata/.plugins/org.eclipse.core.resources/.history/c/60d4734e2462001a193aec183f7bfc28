@@ -1,0 +1,5 @@
+package com.libraryManagement.Student.Repository.IRepository;
+
+public interface IDAOImpl {
+
+}

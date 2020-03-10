@@ -1,0 +1,17 @@
+package com.libraryManagement.Student.Kafka;
+
+import com.libraryManagement.Student.Repository.IRepository.IProductRepository;
+
+@Component
+public class BookUpdateKafkaListener {
+	
+	private IProductRepository dataRepository;
+
+	public BookUpdateKafkaListener(IProductRepository dataRepository) {
+		super();
+		this.dataRepository = dataRepository;
+	}
+	
+	
+
+}

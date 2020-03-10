@@ -1,0 +1,50 @@
+package com.libraryManagement.Student.Kafka;
+
+import java.io.IOException;
+import java.util.Optional;
+import java.util.concurrent.CountDownLatch;
+
+import javax.annotation.PostConstruct;
+
+import org.apache.kafka.clients.consumer.ConsumerRecord;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.kafka.annotation.KafkaListener;
+import org.springframework.stereotype.Component;
+
+import com.libraryManagement.Student.Model.Book;
+import com.libraryManagement.Student.Model.Student;
+import com.libraryManagement.Student.Repository.IRepository.IDAOImpl;
+import com.libraryManagement.Student.Repository.IRepository.IProductRepository;
+
+@Component
+public class BookUpdateKafkaListener {
+	
+	private IDAOImpl dao;
+	private final CountDownLatch latch = new CountDownLatch(3);
+
+	@Autowired
+	public BookUpdateKafkaListener(IDAOImpl dao) {
+		super();
+		this.dao = dao;
+	}
+	
+	@KafkaListener(topics = "updateStudentBookDetails")
+	public void consume(ConsumerRecord<String, Book> cr) throws IOException {
+		Book book = cr.value();
+		
+		if(book != null) {
+			Optional<Student> optionalObject = dataRepository.findById(book.getStudentRollNumber());
+			if(optionalObject.isPresent()) {
+				Student student = optionalObject.get();
+				student.setBookSerialNumber(book.getSerialNumber());
+				dataRepository.save(student);
+			}
+		}
+	}
+	
+	@PostConstruct
+	public void consumeKafkaMessages() {
+		
+	}
+
+}

@@ -1,0 +1,7 @@
+zuul:
+  sensitiveHeaders: Cookie,Set-Cookie
+  ignoredServices: '*'
+  routes:
+    EurekaClient:
+      path: /ProductService/**
+      serviceId: product-service

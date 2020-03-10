@@ -1,0 +1,37 @@
+package com.libarayManagement.Librarian.Exception;
+
+import java.sql.SQLException;
+
+import org.springframework.dao.DataAccessException;
+import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+
+import io.reactivex.netty.protocol.http.server.HttpServerRequest;
+
+@ControllerAdvice
+public class GlobalExceptionHandler<T> {
+
+	@ExceptionHandler(value = { CustomRunTimeException.class })
+	public ResponseEntity<Object> handleCustomException(RuntimeException ex, HttpServerRequest<T> request){
+		return new ResponseEntity<Object>("Please contact the system admin", new HttpHeaders(), HttpStatus.FORBIDDEN);
+	}
+	
+	@ExceptionHandler({DataIntegrityViolationException.class, SQLException.class, DataAccessException.class})
+    public ResponseEntity<Object> handleConflict(RuntimeException ex, HttpServerRequest<T> request) {
+		return new ResponseEntity<Object>(ex.getMessage(), new HttpHeaders(), HttpStatus.CONFLICT);
+    }
+	
+	@ExceptionHandler({SQLException.class, DataAccessException.class})
+    public ResponseEntity<Object> databaseError(RuntimeException ex, HttpServerRequest<T> request) {
+		return new ResponseEntity<Object>(ex.getMessage(), new HttpHeaders(), HttpStatus.FORBIDDEN);
+    }
+	
+	@ExceptionHandler(value = { RuntimeException.class })
+	public ResponseEntity<Object> handleAllException(RuntimeException ex, HttpServerRequest<T> request){
+		return new ResponseEntity<Object>(ex.getMessage(), new HttpHeaders(), HttpStatus.FORBIDDEN);
+	}
+}

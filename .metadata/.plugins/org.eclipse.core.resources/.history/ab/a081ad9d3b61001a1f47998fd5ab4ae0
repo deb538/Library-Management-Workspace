@@ -1,0 +1,103 @@
+package com.libarayManagement.Librarian.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.libarayManagement.Librarian.Exception.CustomRunTimeException;
+import com.libarayManagement.Librarian.Exception.NoContentException;
+import com.libarayManagement.Librarian.Model.ControllerOutput;
+import com.libarayManagement.Librarian.Model.Librarian;
+import com.libarayManagement.Librarian.Model.IModel.ILibrarian;
+import com.libarayManagement.Librarian.Service.LibrarianService;
+
+@RestController
+@RequestMapping("/api/v1")
+public class LibrarianController {
+	
+	@Autowired
+	LibrarianService librarinService;
+	
+	@GetMapping("/librarian")
+	public ResponseEntity<ControllerOutput> getAllLibrarians() {
+		
+		List<Librarian> allLibrarians = librarinService.getAllLibrarians();
+		
+		if(allLibrarians == null || allLibrarians.isEmpty()) {
+			throw new CustomRunTimeException("No Resource found");
+		}
+		
+		ControllerOutput output = new ControllerOutput.ControllerBuilder(allLibrarians)
+				.build();
+		
+		return new ResponseEntity<ControllerOutput>(output, HttpStatus.OK);
+	}
+	
+	@GetMapping("/librarian/{id}")
+	public ResponseEntity<ILibrarian> getLibrarian(@PathVariable Integer id) {
+		
+		if(id == null) {
+			throw new NoContentException("Invalid Input");
+		}
+		
+		Librarian librarian = librarinService.getLibrarian(id);
+
+		if(librarian == null) {
+			throw new CustomRunTimeException("No Resource found");
+		}
+		
+		return new ResponseEntity<>(librarian, HttpStatus.OK);
+	}
+	
+	@PostMapping("/librarian")
+	public ResponseEntity addLibrarian(@RequestBody ILibrarian librarian) {
+		
+		List<Librarian> allLibrarians = librarinService.getLibrarianByEmployeeNumber(librarian);
+		
+		if(allLibrarians != null && !allLibrarians.isEmpty()) {
+			return new ResponseEntity<>(librarian, HttpStatus.CONFLICT);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.CREATED);
+	}
+	
+	/*@PutMapping("/librarian/{id}")
+	public ResponseEntity updateLibrarian(@PathVariable id) {
+		
+		if(no such record) {
+			return new ResponseEntity<>(body, HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+	
+	@PatchMapping("/librarian/{id}")
+	public ResponseEntity partialUpdateLibrarian(@PathVariable id) {
+		
+		if(no such record) {
+			return new ResponseEntity<>(body, HttpStatus.NO_CONTENT);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}*/
+	
+	@DeleteMapping("/librarian/{id}")
+	public ResponseEntity addLibrarian(@PathVariable Integer id) {
+		
+		librarinService.deleteLibrarian(id);
+		
+		return new ResponseEntity<>(HttpStatus.OK);
+	}
+
+}

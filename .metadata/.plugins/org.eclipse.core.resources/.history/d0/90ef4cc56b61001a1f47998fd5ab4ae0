@@ -1,0 +1,46 @@
+package com.libraryManagement.BookS.Service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.libarayManagement.Librarian.Exception.CustomRunTimeException;
+import com.libarayManagement.Librarian.Model.Librarian;
+import com.libarayManagement.Librarian.Model.IModel.ILibrarian;
+import com.libarayManagement.Librarian.Repository.DAOImpl;
+import com.libraryManagement.bookS.Service.IService.ILibrarianService;
+
+@Service
+public class BookService implements ILibrarianService{
+	
+	@Autowired
+	DAOImpl daoImpl;
+
+	public List<Librarian> getAllLibrarians() {
+		return daoImpl.getAllLibrarians();
+	}
+	
+	public Librarian getLibrarian(Integer id) {
+		
+		Librarian librarian = daoImpl.getLibrarian(Long.valueOf(id.toString()));
+		
+		if(librarian == null) {
+			throw new CustomRunTimeException("No Resource found");
+		}
+		return librarian;
+	}
+	
+	public List<Librarian> getLibrarianByEmployeeNumber(ILibrarian librarian) {
+		return daoImpl.getLibrarianByEmployeeNumber(librarian);
+	}
+	
+	
+	public void deleteLibrarian(Integer id) {
+		daoImpl.deleteLibrarian(Long.valueOf(id.toString()));
+	}
+	
+	public Librarian addLibrarian(Librarian librarian) {
+		return daoImpl.addLibrarian(librarian);
+	}
+}

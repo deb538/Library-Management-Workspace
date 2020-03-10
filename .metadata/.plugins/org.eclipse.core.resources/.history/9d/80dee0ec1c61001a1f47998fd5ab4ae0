@@ -1,0 +1,5 @@
+package com.libarayManagement.Librarian.Exception;
+
+public class LibrarianRunTimeException extends RuntimeException {
+
+}

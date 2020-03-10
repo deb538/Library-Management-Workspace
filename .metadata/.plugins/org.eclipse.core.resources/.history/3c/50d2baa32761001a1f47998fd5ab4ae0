@@ -1,0 +1,14 @@
+package com.libarayManagement.Librarian.Repository;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.libarayManagement.Librarian.Repository.IRepository.IProductRepository;
+
+@Repository
+public class DAOImpl {
+	
+	@Autowired
+	private IProductRepository dataRepository;
+
+}

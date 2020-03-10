@@ -1,0 +1,43 @@
+package com.libraryManagement.BookS.Model;
+
+public class Student{
+	
+	private String firstName;
+	private String lastname;
+	private Integer rollNumber;
+	private Integer bookSerialNumber;
+	
+	private Long id;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public Integer getRollNumber() {
+		return rollNumber;
+	}
+	public void setRollNumber(Integer rollNumber) {
+		this.rollNumber = rollNumber;
+	}
+	public Integer getBookSerialNumber() {
+		return bookSerialNumber;
+	}
+	public void setBookSerialNumber(Integer bookSerialNumber) {
+		this.bookSerialNumber = bookSerialNumber;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+}

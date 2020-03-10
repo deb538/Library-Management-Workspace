@@ -1,0 +1,17 @@
+package com.libraryManagement.BookS.Service.IService;
+
+import java.util.List;
+
+import com.libraryManagement.BookS.Exception.CustomRunTimeException;
+import com.libraryManagement.BookS.Model.Book;
+
+public interface IBookService {
+
+	public List<Book> getAllBooks();
+	
+	public Book getBook(Integer id);
+	
+	public void deleteBook(Integer id);
+	
+	public Book addBook(Book Book);
+}

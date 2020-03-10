@@ -1,0 +1,15 @@
+package com.libarayManagement.Librarian.Exception;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ControllerAdvice;
+
+import io.reactivex.netty.protocol.http.server.HttpServerRequest;
+
+@ControllerAdvice
+public class ExceptionHandler<T> {
+
+	@GlobalExceptionHandler(value = { LibrarianRunTimeException.class })
+	public ResponseEntity<Object> handleCustomException(RuntimeException ex, HttpServerRequest<T> request){
+		
+	}
+}

@@ -1,0 +1,26 @@
+1583692073862	Rename package 'com.libarayManagement.Librarian.Exception'
+1583692087873	Rename package 'com.libarayManagement'
+1583692099539	Copy package
+1583692115014	Delete element
+1583692127318	Copy package
+1583692133405	Delete element
+1583692151103	Rename package 'com.libarayManagement.Exception'
+1583692163816	Rename package 'com.libarayManagement.BookSException'
+1583692185493	Rename package 'com.libarayManagement.BookS.Controller'
+1583692210744	Rename package 'com.libarayManagement.BookS.Exception'
+1583692221488	Move compilation unit
+1583692225497	Delete element
+1583692531923	Rename package 'com.libarayManagement.Librarian.Service'
+1583692546811	Rename type 'LibrarianService'
+1583692628428	Rename package 'com.libarayManagement.Librarian.Model'
+1583692749791	Rename compilation unit 'Librarian.java'
+1583692975167	Rename package 'com.libarayManagement.Librarian.Repository'
+1583692991998	Rename package 'com.libarayManagement.BookS.Repository'
+1583693018319	Rename package 'com.libarayManagement.Librarian.Repository.IRepository'
+1583693887621	Copy files
+1583693936549	Copy packages
+1583694064351	Copy package
+1583739972618	Move compilation unit
+1583740176010	Delete element
+1583762338954	Copy compilation unit
+1583771490767	Copy compilation unit

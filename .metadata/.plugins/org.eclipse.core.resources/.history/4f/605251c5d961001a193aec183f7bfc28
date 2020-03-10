@@ -1,0 +1,90 @@
+package com.libraryManagement.BookS.Controller;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.libraryManagement.BookS.Exception.CustomRunTimeException;
+import com.libraryManagement.BookS.Exception.NoContentException;
+import com.libraryManagement.BookS.Model.Book;
+import com.libraryManagement.BookS.Model.ControllerInputOutput;
+import com.libraryManagement.BookS.Service.BookService;
+
+@RestController
+@RequestMapping("/api/v1")
+public class BooksController {
+	
+	@Autowired
+	BookService bookService;	
+	
+	@GetMapping("/Book")
+	public ResponseEntity<ControllerInputOutput> getAllBooks() {
+		
+		List<Book> allBooks = bookService.getAllBooks();
+		
+		if(allBooks == null || allBooks.isEmpty()) {
+			throw new CustomRunTimeException("No Resource found");
+		}
+		
+		ControllerInputOutput output = new ControllerInputOutput.ControllerBuilder()
+				.bookList(allBooks)
+				.build();
+		
+		return new ResponseEntity<ControllerInputOutput>(output, HttpStatus.OK);
+	}
+	
+	@GetMapping("/Book/{id}")
+	public ResponseEntity<Book> getBook(@PathVariable Integer id) {
+		
+		if(id == null) {
+			throw new NoContentException("Invalid Input");
+		}
+		
+		Book Book = bookService.getBook(id);
+
+		return new ResponseEntity<>(Book, HttpStatus.OK);
+	}
+	
+	@PostMapping("/Book")
+	public ResponseEntity<String> addBook(@RequestBody Book Book) {
+		
+		Book = bookService.addBook(Book);
+		
+		if(Book.getId() != null) {
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+	
+	@DeleteMapping("/Book/{id}")
+	public ResponseEntity<String> addBook(@PathVariable Integer id) {
+		
+		bookService.deleteBook(id);
+		
+		return new ResponseEntity<String>(HttpStatus.OK);
+	}
+	
+	@PatchMapping("/Book/{id}/Student/{studentId}")
+	public ResponseEntity<String> addBook(@RequestBody Book Book) {
+		
+		Book = bookService.addBook(Book);
+		
+		if(Book.getId() != null) {
+			return new ResponseEntity<>(HttpStatus.CREATED);
+		}
+		
+		return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+	}
+
+}

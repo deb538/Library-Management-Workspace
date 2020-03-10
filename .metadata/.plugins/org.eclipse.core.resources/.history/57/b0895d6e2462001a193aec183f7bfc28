@@ -1,0 +1,9 @@
+package com.libraryManagement.Student.Repository.IRepository;
+
+import com.libraryManagement.Student.Model.Student;
+
+public interface IDAOImpl {
+	
+	public Student getBookByRollNumber(Integer rollNumber);
+
+}

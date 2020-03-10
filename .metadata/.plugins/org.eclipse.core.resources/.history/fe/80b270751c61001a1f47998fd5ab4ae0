@@ -1,0 +1,34 @@
+package com.libarayManagement.Librarian.Model;
+
+public class Librarian {
+	
+	private String firstName;
+	private String fastName;
+	private Integer employeeNumber;
+	private Long id;
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getFastName() {
+		return fastName;
+	}
+	public void setFastName(String fastName) {
+		this.fastName = fastName;
+	}
+	public Integer getEmployeeNumber() {
+		return employeeNumber;
+	}
+	public void setEmployeeNumber(Integer employeeNumber) {
+		this.employeeNumber = employeeNumber;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+}

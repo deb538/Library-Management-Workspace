@@ -1,0 +1,9 @@
+server.port=5000
+eureka.client.registerWithEureka = false
+eureka.client.fetchRegistry = false
+eureka.server.enableSelfPreservation=true
+eureka.instance.lease-renewal-interval-in-seconds = 30
+eureka.instance.lease-expiration-duration-in-seconds = 90
+eureka.shouldUseDns=true
+eureka.eurekaServer.domainName=mydomaintest.netflix.net
+eureka.eurekaServer.context=eureka/v2

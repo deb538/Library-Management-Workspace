@@ -1,0 +1,29 @@
+package com.libarayManagement.Librarian.Model;
+
+import java.util.List;
+
+public class ControllerOutput {
+	
+	private ControllerOutput() {
+		
+	}
+
+	private List<Librarian> librarianList;
+
+	public List<Librarian> getLibrarianList() {
+		return librarianList;
+	}
+
+	public void setLibrarianList(List<Librarian> librarianList) {
+		this.librarianList = librarianList;
+	}
+	
+	public static class ControllerBuilder{
+		
+		private List<Librarian> librarianList;
+		
+		public ControllerBuilder(List<Librarian> librarianList) {
+			this.librarianList = librarianList;
+		}
+	}
+}

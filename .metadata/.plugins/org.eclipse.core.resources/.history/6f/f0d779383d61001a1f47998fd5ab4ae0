@@ -1,0 +1,15 @@
+package com.libarayManagement.Librarian.Exception;
+
+import org.springframework.stereotype.Component;
+
+public class CustomRunTimeException extends RuntimeException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	 public CustomRunTimeException(String s) { 
+        super(s); 
+	 } 
+}

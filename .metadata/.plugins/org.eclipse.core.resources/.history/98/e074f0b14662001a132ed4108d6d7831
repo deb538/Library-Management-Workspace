@@ -1,0 +1,7 @@
+package com.libraryManagement.APIGateway.Security;
+
+import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+
+public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
+
+}

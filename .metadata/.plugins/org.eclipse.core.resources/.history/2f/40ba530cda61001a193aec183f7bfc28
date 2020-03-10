@@ -1,0 +1,5 @@
+package com.libraryManagement.BookS.Service;
+
+public interface IBookService {
+
+}

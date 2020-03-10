@@ -1,0 +1,18 @@
+package com.libraryManagement.BookS.Service;
+
+import com.libraryManagement.BookS.Service.IService.IStudentService;
+import com.libraryManagement.Student.Exception.CustomRunTimeException;
+import com.libraryManagement.Student.Model.Student;
+
+public class StudentService implements IStudentService{
+
+public Student getStudent(Integer id) {
+		
+		Student Student = daoImpl.getStudent(Long.valueOf(id.toString()));
+		
+		if(Student == null) {
+			throw new CustomRunTimeException("No Resource found");
+		}
+		return Student;
+	}
+}

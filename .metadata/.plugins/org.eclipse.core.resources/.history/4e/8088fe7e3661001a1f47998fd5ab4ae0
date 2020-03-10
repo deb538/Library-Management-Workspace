@@ -1,0 +1,52 @@
+package com.libarayManagement.Librarian.Repository;
+
+import java.util.List;
+import java.util.Optional;
+
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+
+import com.libarayManagement.Librarian.Model.Librarian;
+import com.libarayManagement.Librarian.Model.IModel.ILibrarian;
+import com.libarayManagement.Librarian.Repository.IRepository.IDAOImpl;
+import com.libarayManagement.Librarian.Repository.IRepository.IProductRepository;
+
+@Repository
+public class DAOImpl implements IDAOImpl {
+	
+	@Autowired
+	private IProductRepository dataRepository;
+	
+	@PersistenceContext
+    private EntityManager entityManager;
+	
+	public List<Librarian> getAllLibrarians() {
+		return dataRepository.findAll();
+	}
+	
+	public Librarian getLibrarian(Long id) {
+		Optional<Librarian> optionalObject = dataRepository.findById(id);
+		if(optionalObject.isPresent()) {
+			return optionalObject.get();
+		}
+		return null;
+	}
+	
+	public List<Librarian> getLibrarianByEmployeeNumber(ILibrarian librarian) {
+		
+		Query q = entityManager.createNativeQuery("Select * from Librarian l where l.employeeNumber = :employeeNumber", Librarian.class);
+		q.setParameter("employeeNumber", librarian.getEmployeeNumber());
+		
+		return q.getResultList();
+		
+	}
+	
+	public void deleteLibrarian(ILibrarian Librarian) {
+		dataRepository.deleteById(Librarian.getId());
+	}
+
+}

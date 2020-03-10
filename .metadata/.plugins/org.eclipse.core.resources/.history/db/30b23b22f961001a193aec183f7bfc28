@@ -1,0 +1,6 @@
+package com.libraryManagement.Student.Kafka;
+
+@Component
+public class BookUpdateKafkaListener {
+
+}

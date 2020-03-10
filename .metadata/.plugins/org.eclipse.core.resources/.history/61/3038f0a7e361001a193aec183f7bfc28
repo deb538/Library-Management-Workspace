@@ -1,0 +1,61 @@
+package com.libraryManagement.Student.Model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "student")
+public class Student{
+	
+	@Id
+	@GeneratedValue
+	@Column(name = "id")
+	private Long id;
+	
+	@Column(name = "first_name")
+	private String firstName;
+	
+	@Column(name = "last_name")
+	private String lastname;
+	
+	@Column(name = "roll_number")
+	private Integer rollNumber;
+	
+	@Column(name = "book_serialNo")
+	private Integer bookSerialNumber;
+	
+	public String getFirstName() {
+		return firstName;
+	}
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
+	}
+	public String getLastname() {
+		return lastname;
+	}
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+	public Integer getRollNumber() {
+		return rollNumber;
+	}
+	public void setRollNumber(Integer rollNumber) {
+		this.rollNumber = rollNumber;
+	}
+	public Integer getBookSerialNumber() {
+		return bookSerialNumber;
+	}
+	public void setBookSerialNumber(Integer bookSerialNumber) {
+		this.bookSerialNumber = bookSerialNumber;
+	}
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
+}

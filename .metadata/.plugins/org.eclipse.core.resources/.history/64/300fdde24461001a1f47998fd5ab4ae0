@@ -1,0 +1,13 @@
+package com.libarayManagement.Librarian.Exception;
+
+public class CustomRunTimeException extends RuntimeException {
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
+	 public CustomRunTimeException(String s) { 
+        super(s); 
+	 } 
+}
